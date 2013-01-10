@@ -1,7 +1,7 @@
 *.o
 *.so
-*.cxx
-*.pyc
+*.cpp
+*.h
 *.1
 *.log
 deb/
@@ -9,8 +9,8 @@ deb/
 *.substvars
 *.debhelper
 
-registrar_client.py
-
+registrar_client.php
 
 debian/files
+debian/buildroot
 debian/python-zero-cache/
