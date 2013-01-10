@@ -1,11 +1,15 @@
 #!/usr/bin/env php
 
 <?php
-dl('registrar_client.so');
+include("registrar_client.php");
 
-#print PHP_SHLIB_SUFFIX;
+$client = new RegistrarClient("get_test.log", "ipc:///var/run/zero-cache/0", 0);
 
-#include("registrar_client.php");
+$key = "key1";
+$data = "test data 1\0";
 
-echo 'Hello, world!'; 
+$client->WriteData($key, $data, strlen($data));
+$result = $client->ReadData($key)."\0";
+
+assert($data === $result);
 ?>

@@ -8,24 +8,22 @@ using namespace zero_cache;
 
 %include "std_string.i"
 
-/*
 %typemap(in) Connection
 {
-    $1 = Connection(PyString_AsString($input));
+    $1 = Connection(Z_STRVAL_PP($input));
 }
 
 %typemap(in) SocketType
 {
-    $1 = SocketType(PyLong_AsLong($input));
+    $1 = SocketType(Z_LVAL_PP($input));
 }
 
 %typemap(in) void* {
-    $1 = PyString_AsString($input);
+    $1 = Z_STRVAL_PP($input);
 }
 
 %typemap(out) void* {
-   $result = PyString_FromString((char*)$1);
+    ZVAL_STRING($result, (char*)$1, 1)
 }
-*/
 
 %include "../client/registrar_client.h"
