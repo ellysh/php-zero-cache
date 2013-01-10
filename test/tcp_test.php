@@ -1,8 +1,8 @@
-#!/usr/bin/env python
+#!/usr/bin/env php
 
 import registrar_client
 
-client = registrar_client.RegistrarClient("get_test.log", "ipc:///var/run/zero-cache/0", 0)
+client = registrar_client.RegistrarClient("tcp_test.log", "tcp://localhost:5570", 0)
 
 key = "key1"
 data = "test data 1\0"

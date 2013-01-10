@@ -8,6 +8,7 @@ using namespace zero_cache;
 
 %include "std_string.i"
 
+/*
 %typemap(in) Connection
 {
     $1 = Connection(PyString_AsString($input));
@@ -25,5 +26,6 @@ using namespace zero_cache;
 %typemap(out) void* {
    $result = PyString_FromString((char*)$1);
 }
+*/
 
 %include "../client/registrar_client.h"
