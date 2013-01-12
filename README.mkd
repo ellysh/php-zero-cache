@@ -1,10 +1,10 @@
-Python-zero-cache 0.2 version
+Php-zero-cache 0.2 version
 ======================
 
 INTRODUCTION
 ------------
 
-Python-zero-cache is a Python bindings for the zero-cache memory caching system
+Php-zero-cache is a PHP bindings for the zero-cache memory caching system
 based on ZMQ messaging library.
 
 BUILDING
@@ -13,7 +13,7 @@ BUILDING
 You need the C++ compiler, SWIG and libraries ZMQ, CZMQ to build this software.
 Also the source code of the zero-cache system is needed.
 
-1. Check what symlinks to zero-cache sources in `source` directory of the python-zero-cache project is
+1. Check what symlinks to zero-cache sources in `source` directory of the php-zero-cache project is
    correct.<br/>
 
 2. Build binaries with GNU Make. Type this command in the project root directory:
@@ -24,17 +24,23 @@ Also the source code of the zero-cache system is needed.
 
     $ make deb
 
-You can find debian packages in the `python-zero-cache/deb` directory.
+You can find debian packages in the `php-zero-cache/deb` directory.
 
 INSTALLING
 ----------
 
 Debian-based Linux distribution users can install debian packages from
-`python-zero-cache/deb` directory.
+`php-zero-cache/deb` directory.
 
 Another way is installing with Makefile default mechanism:
 
     $ make install
+
+CONFIGURATION
+-------------
+
+You must specify following parameter in your php.ini config to use php-zero-cache module:
+enable_dl = On
 
 USAGE
 -----
@@ -59,35 +65,39 @@ zero-cache classes.
 
 This is example of typical client application for Unix socket based connection:
 
-    #!/usr/bin/env python
+    #!/usr/bin/env php
 
-    import registrar_client
+    <?php
+    include("registrar_client.php");
 
-    client = registrar_client.RegistrarClient("get_test.log", "ipc:///var/run/zero-cache/0", 0)
+    $client = new RegistrarClient("get_test.log", "ipc:///var/run/zero-cache/0", 0);
 
-    key = "key1"
-    data = "test data 1\0"
+    $key = "key1";
+    $data = "test data 1\0";
 
-    client.WriteData(key, data, len(data))
-    result = client.ReadData(key) + '\0'
+    $client->WriteData($key, $data, strlen($data));
+    $result = $client->ReadData($key)."\0";
 
-    assert data == result
+    assert($data === $result);
+    ?>
 
 This is example of typical client application for TCP socket based connection:
 
-    #!/usr/bin/env python
+    #!/usr/bin/env php
 
-    import registrar_client
+    <?
+    include("registrar_client.php");
 
-    client = registrar_client.RegistrarClient("tcp_test.log", "tcp://localhost:5570", 0)
+    $client = new RegistrarClient("tcp_test.log", "tcp://localhost:5570", 0);
 
-    key = "key1"
-    data = "test data 1\0"
+    $key = "key1";
+    $data = "test data 1\0";
 
-    client.WriteData(key, data, len(data))
-    result = client.ReadData(key) + '\0'
+    $client->WriteData($key, $data, strlen($data));
+    $result = $client->ReadData($key)."\0";
 
-    assert data == result
+    assert($data === $result);
+    ?>
 
 More usage examples you can find in files of 'test' directory.
 
