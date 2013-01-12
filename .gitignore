@@ -13,4 +13,4 @@ registrar_client.php
 
 debian/files
 debian/buildroot
-debian/python-zero-cache/
+debian/php-zero-cache
