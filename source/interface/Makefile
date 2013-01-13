@@ -9,7 +9,7 @@ CPP_FILES = $(CLIENT_DIR)/registrar_client.cpp \
 			$(COMMON_DIR)/speaker.cpp \
 			$(COMMON_DIR)/socket.cpp
 INSTALL_LIB_DIR = usr/lib/php5/20090626
-INSTALL_PHP_DIR = usr/share/php
+INSTALL_MODULE_DIR = usr/share/php
 
 OBJ_FILES = registrar_client.o debug.o functions.o client_list.o client.o connection.o socket.o speaker.o
 CXXFLAGS = -I"/usr/include/php5/Zend" -I"/usr/include/php5/TSRM" -I"/usr/include/php5/main" -I"/usr/include/php5" -I"../common" -I"../server"
@@ -25,8 +25,8 @@ $(MODULE_NAME):
 install:
 	mkdir -p $(DESTDIR)/$(INSTALL_LIB_DIR)
 	cp $(MODULE_NAME).so $(DESTDIR)/$(INSTALL_LIB_DIR)
-	mkdir -p $(DESTDIR)/$(INSTALL_PHP_DIR)
-	cp $(MODULE_NAME).php $(DESTDIR)/$(INSTALL_PHP_DIR)
+	mkdir -p $(DESTDIR)/$(INSTALL_MODULE_DIR)
+	cp $(MODULE_NAME).php $(DESTDIR)/$(INSTALL_MODULE_DIR)
 
 clean:
 	rm -f *_wrap.* *.so *.o *.php
