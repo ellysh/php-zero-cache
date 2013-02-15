@@ -1,15 +1,23 @@
 #!/usr/bin/env php
 
-<?
-include("registrar_client.php");
+<?php
+include("client_wrap.php");
 
-$client = new RegistrarClient("tcp_test.log", "tcp://localhost:5570", 0);
+define('KEY_LONG', 'key1');
+define('DATA_LONG', 1024);
 
-$key = "key1";
-$data = "test data 1\0";
+function init_data($client)
+{
+    $client->WriteLong(KEY_LONG, DATA_LONG);
+}
 
-$client->WriteData($key, $data, strlen($data));
-$result = $client->ReadData($key)."\0";
+function check_data($client)
+{
+    assert(DATA_LONG == $client->ReadLong(KEY_LONG));
+}
 
-assert($data === $result);
-?>
+$client = new ClientWrap("tcp_test.log", "tcp://localhost:5570", 0);
+
+init_data($client);
+
+check_data($client);
