@@ -1,5 +1,5 @@
-Php-zero-cache 0.2 version
-======================
+Php-zero-cache 1.5 version
+==========================
 
 INTRODUCTION
 ------------
@@ -40,7 +40,8 @@ CONFIGURATION
 -------------
 
 You must specify following parameter in your php.ini config to use php-zero-cache module:
-enable_dl = On
+
+    enable_dl = On
 
 USAGE
 -----
@@ -60,7 +61,7 @@ The command line arguments information is available by command:
 
     $ zero-cache -h
 
-Your client application must import the registrar_client module to access
+Your client application must import the `registrar_client` module to access
 zero-cache classes.
 
 This is example of typical client application for Unix socket based connection:
@@ -68,38 +69,32 @@ This is example of typical client application for Unix socket based connection:
     #!/usr/bin/env php
 
     <?php
-    include("registrar_client.php");
+    include("client_wrap.php");
 
-    $client = new RegistrarClient("get_test.log", "ipc:///var/run/zero-cache/0", 0);
+    $client = new ClientWrap("get_test.log", "ipc:///var/run/zero-cache/0", 0);
 
     $key = "key1";
-    $data = "test data 1\0";
+    $data = "test data 1";
 
-    $client->WriteData($key, $data, strlen($data));
-    $result = $client->ReadData($key)."\0";
-
-    assert($data === $result);
-    ?>
+    $client->WriteString($key, $data);
+    $result = $client->ReadString($key);
 
 This is example of typical client application for TCP socket based connection:
 
     #!/usr/bin/env php
 
     <?
-    include("registrar_client.php");
+    include("client_wrap.php");
 
-    $client = new RegistrarClient("tcp_test.log", "tcp://localhost:5570", 0);
+    $client = new ClientWrap("tcp_test.log", "tcp://localhost:5570", 0);
 
     $key = "key1";
-    $data = "test data 1\0";
+    $data = "test data 1";
 
-    $client->WriteData($key, $data, strlen($data));
-    $result = $client->ReadData($key)."\0";
+    $client->WriteString($key, $data);
+    $result = $client->ReadString($key);
 
-    assert($data === $result);
-    ?>
-
-More usage examples you can find in files of 'test' directory.
+More usage examples you can find in files of `test` directory.
 
 COPYING
 -------

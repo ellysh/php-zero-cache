@@ -1,2 +1,7 @@
+* php-zero-cache 1.5
+	- Use type safe ClientWrap class to interact with zero-cahe
+	- Fixes according to zero-cache 1.5 API
+	- Add test script for keys receiving
+
 * php-zero-cache 0.2
 	- Base functional implementation
