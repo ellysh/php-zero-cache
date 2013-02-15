@@ -9,7 +9,7 @@ deb/
 *.substvars
 *.debhelper
 
-registrar_client.php
+client_wrap.php
 
 debian/files
 debian/buildroot

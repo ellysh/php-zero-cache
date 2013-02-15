@@ -1,7 +1,7 @@
-%module registrar_client
+%module client_wrap
 
 %{
-#include "../client/registrar_client.h"
+#include "../client/client_wrap.h"
 
 using namespace zero_cache;
 %}
@@ -18,12 +18,12 @@ using namespace zero_cache;
     $1 = SocketType(Z_LVAL_PP($input));
 }
 
-%typemap(in) void* {
+%typemap(in) std::string {
     $1 = Z_STRVAL_PP($input);
 }
 
-%typemap(out) void* {
-    ZVAL_STRING($result, (char*)$1, 1)
+%typemap(out) std::string {
+    ZVAL_STRING($result, $1.c_str(), 1)
 }
 
-%include "../client/registrar_client.h"
+%include "../client/client_wrap.h"
