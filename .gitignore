@@ -9,7 +9,7 @@ deb/
 *.substvars
 *.debhelper
 
-client_wrap.php
+zero_cache.php
 
 debian/files
 debian/buildroot
