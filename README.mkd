@@ -1,4 +1,4 @@
-Php-zero-cache 2.0 version
+Php-zero-cache 2.2 version
 ==========================
 
 INTRODUCTION
@@ -65,7 +65,7 @@ This is example of typical client application for Unix socket based connection:
     <?php
     include("zero_cache.php");
 
-    $client = new Client();
+    $client = new TypedClient();
 
     $index = 0;
     $data = 1024;
