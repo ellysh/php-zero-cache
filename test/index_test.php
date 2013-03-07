@@ -11,6 +11,6 @@ function print_index($client)
     }
 }
 
-$client = new Client();
+$client = new TypedClient();
 
 print_index($client);

@@ -21,7 +21,8 @@ function check_data($client)
     assert(DATA_DOUBLE == $client->ReadDouble(INDEX_DOUBLE));
 }
 
-$client = new Client();
+$client = new TypedClient();
+$client->ClearCache();
 
 init_data($client);
 

@@ -1,12 +1,13 @@
 CLIENT_DIR = ../client
 COMMON_DIR = ../common
-CPP_FILES = $(CLIENT_DIR)/client.cpp \
+CPP_FILES = $(CLIENT_DIR)/typed_client.cpp \
+			$(CLIENT_DIR)/untyped_client.cpp \
 			$(COMMON_DIR)/debug.cpp \
 			$(COMMON_DIR)/speaker.cpp
 INSTALL_LIB_DIR = usr/lib/php5/20090626
 INSTALL_MODULE_DIR = usr/share/php
 
-OBJ_FILES = client.o debug.o speaker.o
+OBJ_FILES = typed_client.o untyped_client.o debug.o speaker.o
 CXXFLAGS = -I"/usr/include/php5/Zend" -I"/usr/include/php5/TSRM" -I"/usr/include/php5/main" -I"/usr/include/php5" -I"../common" -I"../server"
 MODULE_NAME = zero_cache
 
